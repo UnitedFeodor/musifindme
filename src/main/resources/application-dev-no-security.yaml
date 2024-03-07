@@ -1,0 +1,14 @@
+spring:
+  jpa:
+    open-in-view: false
+  datasource:
+    url: jdbc:postgresql://localhost:5432/musifindme
+    password: postgres
+    username: postgres
+    driver-class-name: org.postgresql.Driver
+  flyway:
+    url: jdbc:postgresql://localhost:5432/musifindme
+    user: postgres
+    password: postgres
+server:
+  port: 8081
