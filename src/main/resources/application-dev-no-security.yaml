@@ -1,6 +1,7 @@
 spring:
   jpa:
     open-in-view: false
+    show-sql: true
   datasource:
     url: jdbc:postgresql://localhost:5432/musifindme
     password: postgres
@@ -12,3 +13,5 @@ spring:
     password: postgres
 server:
   port: 8081
+
+
