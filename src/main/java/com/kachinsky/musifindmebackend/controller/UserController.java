@@ -1,7 +1,6 @@
 package com.kachinsky.musifindmebackend.controller;
 
 import com.kachinsky.musifindmebackend.dto.FlatUserDto;
-import com.kachinsky.musifindmebackend.dto.FullUserDto;
 import com.kachinsky.musifindmebackend.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -21,6 +20,8 @@ public class UserController {
     @GetMapping("/{id}")
     public FlatUserDto getFlatUserById(@PathVariable int id) {
         log.info("Requested user with id {}",id);
-        return userService.getFullUserById(id);
+        return userService.getFlatUserById(id);
     }
+
+
 }
