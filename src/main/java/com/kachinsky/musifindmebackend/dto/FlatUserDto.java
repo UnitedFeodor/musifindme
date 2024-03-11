@@ -19,7 +19,6 @@ public class FlatUserDto implements Serializable {
     String searchingFor;
     Map<String, String> socials;
     String email;
-    String password;
     Set<FlatArtistDto> artists;
     Set<GenreDto> genres;
     Set<InstrumentDto> instruments;
