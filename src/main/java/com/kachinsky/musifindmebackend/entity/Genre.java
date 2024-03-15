@@ -1,6 +1,7 @@
 package com.kachinsky.musifindmebackend.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -18,6 +19,7 @@ public class Genre {
     private Integer id;
 
     @Column(name = "name", nullable = false, length = 100)
+    @NotBlank(message = "Name must be not blank")
     private String name;
 
     @ManyToMany(mappedBy = "genres", fetch = FetchType.LAZY)
