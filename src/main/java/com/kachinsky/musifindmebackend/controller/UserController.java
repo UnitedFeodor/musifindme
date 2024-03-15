@@ -1,13 +1,12 @@
 package com.kachinsky.musifindmebackend.controller;
 
+import com.kachinsky.musifindmebackend.dto.CreateUserDto;
 import com.kachinsky.musifindmebackend.dto.FlatUserDto;
+import com.kachinsky.musifindmebackend.dto.UpdateUserDto;
 import com.kachinsky.musifindmebackend.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/users")
@@ -23,5 +22,17 @@ public class UserController {
         return userService.getFlatUserById(id);
     }
 
+    // TODO validate nulls
+    @PostMapping
+    public FlatUserDto addUser(@RequestBody CreateUserDto userDto) {
+        log.info("Requested create of user with email {}",userDto.getEmail());
+        return userService.createUser(userDto);
+    }
+
+    @PatchMapping("/{id}")
+    public FlatUserDto editUserById(@PathVariable int id, @RequestBody UpdateUserDto userDto) {
+        log.info("Requested update of user with id {}",id);
+        return userService.updateUserById(id, userDto);
+    }
 
 }
