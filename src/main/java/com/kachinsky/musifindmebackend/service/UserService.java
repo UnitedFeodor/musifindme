@@ -44,6 +44,7 @@ public class UserService {
     }
 
 
+    @Transactional
     public FlatUserDto createUser(CreateUserDto userDto) {
         String userEmail = userDto.getEmail();
         if (userRepository.existsByEmail(userEmail)) {

@@ -19,9 +19,9 @@ public class CreateUserDto implements Serializable {
     Map<String, String> socials;
     String email;
     String password;
-    Set<Integer> artistIds;
-    Set<Integer> genreIds;
-    Set<Integer> instrumentIds;
-    Set<Integer> releaseIds;
-    Set<Integer> songIds;
+    Set<Integer> artists;
+    Set<Integer> genres;
+    Set<Integer> instruments;
+    Set<Integer> releases;
+    Set<Integer> songs;
 }

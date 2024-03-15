@@ -35,6 +35,7 @@ public interface UserDtoMapper {
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     User partialUpdate(FlatUserDto flatUserDto, @MappingTarget User user);
 
+    @Mapping(source = "socials", target = "socialsJson")
     User toEntity(UpdateUserDto updateUserDto);
 
     @Mapping(target = "artists", expression = "java(artistsToArtistIds(user.getArtists()))")
@@ -42,19 +43,22 @@ public interface UserDtoMapper {
     @Mapping(target = "instruments", expression = "java(instrumentsToInstrumentIds(user.getInstruments()))")
     @Mapping(target = "releases", expression = "java(releasesToReleaseIds(user.getReleases()))")
     @Mapping(target = "songs", expression = "java(songsToSongIds(user.getSongs()))")
+    @Mapping(source = "socialsJson", target = "socials")
     UpdateUserDto toDto(User user);
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     @Mapping(source = "socials", target = "socialsJson")
     User partialUpdate(UpdateUserDto updateUserDto, @MappingTarget User user);
 
+    @Mapping(source = "socials", target = "socialsJson")
     User toEntity(CreateUserDto createUserDto);
 
-    @Mapping(target = "artistIds", expression = "java(artistsToArtistIds(user.getArtists()))")
-    @Mapping(target = "genreIds", expression = "java(genresToGenreIds(user.getGenres()))")
-    @Mapping(target = "instrumentIds", expression = "java(instrumentsToInstrumentIds(user.getInstruments()))")
-    @Mapping(target = "releaseIds", expression = "java(releasesToReleaseIds(user.getReleases()))")
-    @Mapping(target = "songIds", expression = "java(songsToSongIds(user.getSongs()))")
+    @Mapping(target = "artists", expression = "java(artistsToArtistIds(user.getArtists()))")
+    @Mapping(target = "genres", expression = "java(genresToGenreIds(user.getGenres()))")
+    @Mapping(target = "instruments", expression = "java(instrumentsToInstrumentIds(user.getInstruments()))")
+    @Mapping(target = "releases", expression = "java(releasesToReleaseIds(user.getReleases()))")
+    @Mapping(target = "songs", expression = "java(songsToSongIds(user.getSongs()))")
+    @Mapping(source = "socialsJson", target = "socials")
     CreateUserDto toCreateUserDto(User user);
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
