@@ -1,7 +1,7 @@
 package com.kachinsky.musifindmebackend.service;
 
 import com.kachinsky.musifindmebackend.dto.user.CreateUserDto;
-import com.kachinsky.musifindmebackend.dto.user.FlatUserDto;
+import com.kachinsky.musifindmebackend.dto.user.FullUserDto;
 import com.kachinsky.musifindmebackend.dto.user.UpdateUserDto;
 import com.kachinsky.musifindmebackend.entity.User;
 import com.kachinsky.musifindmebackend.exception.ResourceNotFoundException;
@@ -22,7 +22,7 @@ public class UserService {
     private final UserRepository userRepository;
 
     @Transactional
-    public FlatUserDto getFlatUserById(int id) {
+    public FullUserDto getFlatUserById(int id) {
         User user =
                 userRepository
                         .findFullUserInfoById(id)
@@ -32,7 +32,7 @@ public class UserService {
     }
 
     @Transactional
-    public FlatUserDto updateUserById(int id, UpdateUserDto updateUserDto) {
+    public FullUserDto updateUserById(int id, UpdateUserDto updateUserDto) {
         User userToUpdate = userRepository
                 .findFullUserInfoById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("User with id " + id + " not found"));
@@ -45,7 +45,7 @@ public class UserService {
 
     // TODO fix bug with null joins
     @Transactional
-    public FlatUserDto createUser(CreateUserDto userDto) {
+    public FullUserDto createUser(CreateUserDto userDto) {
         String userEmail = userDto.getEmail();
         if (userRepository.existsByEmail(userEmail)) {
             throw new UserAlreadyExistsException("User with email " + userEmail + " already exists");
@@ -55,18 +55,14 @@ public class UserService {
 
         User createdUser = userRepository.save(userToCreate);
 
-//        return userDtoMapper.toFlatUserDto(createdUser);
+        return userDtoMapper.toFlatUserDto(createdUser);
 
-        User user =
-                userRepository
-                        .findFullUserInfoById(createdUser.getId())
-                        .orElseThrow(() -> new ResourceNotFoundException("User with id " + createdUser.getId() + " not found"));
+//        User user =
+//                userRepository
+//                        .findFullUserInfoById(createdUser.getId())
+//                        .orElseThrow(() -> new ResourceNotFoundException("User with id " + createdUser.getId() + " not found"));
 
-//        user = userRepository
-//                .findFullUserInfoById(createdUser.getId())
-//                .orElseThrow(() -> new ResourceNotFoundException("User with id " + createdUser.getId() + " not found"));
-        return userDtoMapper.toFlatUserDto(user);
-//        return getFlatUserById(createdUser.getId());
+//        return userDtoMapper.toFlatUserDto(user);
 
     }
 

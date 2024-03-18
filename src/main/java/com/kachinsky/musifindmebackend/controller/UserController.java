@@ -1,7 +1,7 @@
 package com.kachinsky.musifindmebackend.controller;
 
 import com.kachinsky.musifindmebackend.dto.user.CreateUserDto;
-import com.kachinsky.musifindmebackend.dto.user.FlatUserDto;
+import com.kachinsky.musifindmebackend.dto.user.FullUserDto;
 import com.kachinsky.musifindmebackend.dto.user.UpdateUserDto;
 import com.kachinsky.musifindmebackend.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -17,9 +17,10 @@ public class UserController {
 
     private final UserService userService;
 
+    //TODO add get all
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public FlatUserDto getFlatUserById(@PathVariable int id) {
+    public FullUserDto getFlatUserById(@PathVariable int id) {
         log.info("Requested user with id {}",id);
         return userService.getFlatUserById(id);
     }
@@ -27,14 +28,14 @@ public class UserController {
     // TODO validate nulls
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public FlatUserDto addUser(@RequestBody CreateUserDto userDto) {
+    public FullUserDto createUser(@RequestBody CreateUserDto userDto) {
         log.info("Requested create of user with email {}",userDto.getEmail());
         return userService.createUser(userDto);
     }
 
     @PatchMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public FlatUserDto editUserById(@PathVariable int id, @RequestBody UpdateUserDto userDto) {
+    public FullUserDto updateUserById(@PathVariable int id, @RequestBody UpdateUserDto userDto) {
         log.info("Requested update of user with id {}",id);
         return userService.updateUserById(id, userDto);
     }

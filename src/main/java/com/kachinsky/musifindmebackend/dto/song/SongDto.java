@@ -1,6 +1,6 @@
 package com.kachinsky.musifindmebackend.dto.song;
 
-import com.kachinsky.musifindmebackend.dto.genre.GenreDto;
+import com.kachinsky.musifindmebackend.dto.genre.FlatGenreDto;
 import com.kachinsky.musifindmebackend.entity.Song;
 import lombok.Value;
 
@@ -14,5 +14,5 @@ import java.util.Set;
 public class SongDto implements Serializable {
     Integer id;
     String name;
-    Set<GenreDto> genres;
+    Set<FlatGenreDto> genres;
 }

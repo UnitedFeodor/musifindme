@@ -1,7 +1,8 @@
 package com.kachinsky.musifindmebackend.controller;
 
 import com.kachinsky.musifindmebackend.dto.genre.CreateUpdateGenreDto;
-import com.kachinsky.musifindmebackend.dto.genre.GenreDto;
+import com.kachinsky.musifindmebackend.dto.genre.FlatGenreDto;
+import com.kachinsky.musifindmebackend.dto.genre.FullGenreDto;
 import com.kachinsky.musifindmebackend.service.GenreService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -20,28 +21,28 @@ public class GenreController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public List<GenreDto> getAllGenres() {
+    public List<FlatGenreDto> getAllGenres() {
         return genreService.getAllGenres();
     }
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public GenreDto getGenreById(@PathVariable("id") int id) {
+    public FullGenreDto getGenreById(@PathVariable("id") int id) {
         return genreService.getGenreById(id);
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public GenreDto createGenre(@RequestBody CreateUpdateGenreDto createUpdateGenreDto) {
+    public FullGenreDto createGenre(@RequestBody CreateUpdateGenreDto createUpdateGenreDto) {
         return genreService.createGenre(createUpdateGenreDto);
     }
 
-    @PutMapping("/{id}")
+    @PatchMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public GenreDto updateGenre(
+    public FullGenreDto updateGenre(
             @PathVariable("id") Integer id,
             @RequestBody CreateUpdateGenreDto createUpdateGenreDto) {
-        return genreService.updateGenre(id, createUpdateGenreDto);
+        return genreService.updateGenreById(id, createUpdateGenreDto);
     }
 
     @DeleteMapping("/{id}")

@@ -17,6 +17,9 @@ public interface ReleaseDtoMapper {
 
     FlatReleaseDto toDto1(Release release);
 
+    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
+    Release partialUpdate(FlatReleaseDto flatReleaseDto, @MappingTarget Release release);
+
 //    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
 //    Release partialUpdate(FlatReleaseDto flatReleaseDto, @MappingTarget Release release);
 }

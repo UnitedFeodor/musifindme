@@ -1,5 +1,6 @@
 package com.kachinsky.musifindmebackend.dto.release;
 
+import com.kachinsky.musifindmebackend.dto.song.FlatSongDto;
 import com.kachinsky.musifindmebackend.dto.song.SongDto;
 import com.kachinsky.musifindmebackend.entity.Release;
 import lombok.Value;
@@ -20,5 +21,5 @@ public class ReleaseDto implements Serializable {
     String producer;
     String coverImageUrl;
     String description;
-    Set<SongDto> songs;
+    Set<FlatSongDto> songs;
 }

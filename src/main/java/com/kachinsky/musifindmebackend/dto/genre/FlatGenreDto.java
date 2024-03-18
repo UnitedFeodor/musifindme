@@ -9,7 +9,7 @@ import java.io.Serializable;
  * DTO for {@link Genre}
  */
 @Value
-public class GenreDto implements Serializable {
+public class FlatGenreDto implements Serializable {
     Integer id;
     String name;
 }

@@ -1,7 +1,7 @@
 package com.kachinsky.musifindmebackend.mapper;
 
 import com.kachinsky.musifindmebackend.dto.user.CreateUserDto;
-import com.kachinsky.musifindmebackend.dto.user.FlatUserDto;
+import com.kachinsky.musifindmebackend.dto.user.FullUserDto;
 import com.kachinsky.musifindmebackend.dto.user.UpdateUserDto;
 import com.kachinsky.musifindmebackend.entity.*;
 import org.mapstruct.*;
@@ -26,14 +26,14 @@ public interface UserDtoMapper {
 //    User partialUpdate(FullUserDto fullUserDto, @MappingTarget User user);
 
     @Mapping(source = "socials", target = "socialsJson")
-    User toUser(FlatUserDto flatUserDto);
+    User toUser(FullUserDto fullUserDto);
 
 
     @Mapping(source = "socialsJson", target = "socials")
-    FlatUserDto toFlatUserDto(User user);
+    FullUserDto toFlatUserDto(User user);
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
-    User partialUpdate(FlatUserDto flatUserDto, @MappingTarget User user);
+    User partialUpdate(FullUserDto fullUserDto, @MappingTarget User user);
 
     @Mapping(source = "socials", target = "socialsJson")
     User toEntity(UpdateUserDto updateUserDto);

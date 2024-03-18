@@ -17,6 +17,9 @@ public interface SongDtoMapper {
 
     FlatSongDto toDto1(Song song);
 
+    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
+    Song partialUpdate(FlatSongDto flatSongDto, @MappingTarget Song song);
+
 //    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
 //    Song partialUpdate(FlatSongDto flatSongDto, @MappingTarget Song song);
 }

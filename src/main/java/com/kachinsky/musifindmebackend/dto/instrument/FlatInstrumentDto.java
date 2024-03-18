@@ -9,7 +9,7 @@ import java.io.Serializable;
  * DTO for {@link Instrument}
  */
 @Value
-public class InstrumentDto implements Serializable {
+public class FlatInstrumentDto implements Serializable {
     Integer id;
     String name;
 }

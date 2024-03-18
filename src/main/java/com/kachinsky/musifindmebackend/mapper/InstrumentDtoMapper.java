@@ -1,19 +1,21 @@
 package com.kachinsky.musifindmebackend.mapper;
 
 import com.kachinsky.musifindmebackend.dto.instrument.CreateUpdateInstrumentDto;
+import com.kachinsky.musifindmebackend.dto.instrument.FlatInstrumentDto;
+import com.kachinsky.musifindmebackend.dto.instrument.FullInstrumentDto;
 import com.kachinsky.musifindmebackend.entity.Instrument;
-import com.kachinsky.musifindmebackend.dto.instrument.InstrumentDto;
 import org.mapstruct.*;
 
 import java.util.List;
 
 @Mapper(unmappedTargetPolicy = ReportingPolicy.WARN, componentModel = MappingConstants.ComponentModel.SPRING)
 public interface InstrumentDtoMapper {
-    Instrument toEntity(InstrumentDto instrumentDto);
+    Instrument toEntity(FlatInstrumentDto flatInstrumentDto);
 
     Instrument toEntity(CreateUpdateInstrumentDto instrumentDto);
-    InstrumentDto toDto(Instrument instrument);
-    List<InstrumentDto> toDto(List<Instrument> instrument);
+    FlatInstrumentDto toDto(Instrument instrument);
+    FullInstrumentDto toFullDto(Instrument instrument);
+    List<FlatInstrumentDto> toDto(List<Instrument> instrument);
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     Instrument partialUpdate(CreateUpdateInstrumentDto instrumentDto, @MappingTarget Instrument instrument);
