@@ -1,4 +1,4 @@
-package com.kachinsky.musifindmebackend.dto;
+package com.kachinsky.musifindmebackend.dto.user;
 
 import lombok.Value;
 
@@ -10,7 +10,7 @@ import java.util.Set;
  * DTO for {@link com.kachinsky.musifindmebackend.entity.User}
  */
 @Value
-public class UpdateUserDto implements Serializable {
+public class CreateUserDto implements Serializable {
     String name;
     Integer age;
     String city;
@@ -21,7 +21,7 @@ public class UpdateUserDto implements Serializable {
     String password;
     Set<Integer> artists;
     Set<Integer> genres;
-    Set<Integer> instruments; //TODO add json param over controller
+    Set<Integer> instruments;
     Set<Integer> releases;
     Set<Integer> songs;
 }

@@ -1,7 +1,6 @@
 package com.kachinsky.musifindmebackend.mapper;
 
-import com.kachinsky.musifindmebackend.dto.FlatReleaseDto;
-import com.kachinsky.musifindmebackend.dto.ReleaseDto;
+import com.kachinsky.musifindmebackend.dto.release.FlatReleaseDto;
 import com.kachinsky.musifindmebackend.entity.Release;
 import org.mapstruct.*;
 

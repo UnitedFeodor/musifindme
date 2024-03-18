@@ -1,8 +1,8 @@
 package com.kachinsky.musifindmebackend.service;
 
-import com.kachinsky.musifindmebackend.dto.CreateUserDto;
-import com.kachinsky.musifindmebackend.dto.FlatUserDto;
-import com.kachinsky.musifindmebackend.dto.UpdateUserDto;
+import com.kachinsky.musifindmebackend.dto.user.CreateUserDto;
+import com.kachinsky.musifindmebackend.dto.user.FlatUserDto;
+import com.kachinsky.musifindmebackend.dto.user.UpdateUserDto;
 import com.kachinsky.musifindmebackend.entity.User;
 import com.kachinsky.musifindmebackend.exception.ResourceNotFoundException;
 import com.kachinsky.musifindmebackend.exception.UserAlreadyExistsException;

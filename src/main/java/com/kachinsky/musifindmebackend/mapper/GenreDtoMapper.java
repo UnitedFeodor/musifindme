@@ -1,6 +1,6 @@
 package com.kachinsky.musifindmebackend.mapper;
 
-import com.kachinsky.musifindmebackend.dto.GenreDto;
+import com.kachinsky.musifindmebackend.dto.genre.GenreDto;
 import com.kachinsky.musifindmebackend.entity.Genre;
 import org.mapstruct.*;
 

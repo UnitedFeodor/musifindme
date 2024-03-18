@@ -1,8 +1,8 @@
 package com.kachinsky.musifindmebackend.mapper;
 
-import com.kachinsky.musifindmebackend.dto.CreateUserDto;
-import com.kachinsky.musifindmebackend.dto.FlatUserDto;
-import com.kachinsky.musifindmebackend.dto.UpdateUserDto;
+import com.kachinsky.musifindmebackend.dto.user.CreateUserDto;
+import com.kachinsky.musifindmebackend.dto.user.FlatUserDto;
+import com.kachinsky.musifindmebackend.dto.user.UpdateUserDto;
 import com.kachinsky.musifindmebackend.entity.*;
 import org.mapstruct.*;
 

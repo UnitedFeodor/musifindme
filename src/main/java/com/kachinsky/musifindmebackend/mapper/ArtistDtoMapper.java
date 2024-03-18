@@ -1,7 +1,6 @@
 package com.kachinsky.musifindmebackend.mapper;
 
-import com.kachinsky.musifindmebackend.dto.ArtistDto;
-import com.kachinsky.musifindmebackend.dto.FlatArtistDto;
+import com.kachinsky.musifindmebackend.dto.artist.FlatArtistDto;
 import com.kachinsky.musifindmebackend.entity.Artist;
 import org.mapstruct.*;
 

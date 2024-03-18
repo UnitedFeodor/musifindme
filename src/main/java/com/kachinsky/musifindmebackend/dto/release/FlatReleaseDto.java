@@ -1,4 +1,4 @@
-package com.kachinsky.musifindmebackend.dto;
+package com.kachinsky.musifindmebackend.dto.release;
 
 import com.kachinsky.musifindmebackend.entity.Release;
 import lombok.Value;
@@ -10,7 +10,7 @@ import java.util.Set;
  * DTO for {@link Release}
  */
 @Value
-public class ReleaseDto implements Serializable {
+public class FlatReleaseDto implements Serializable {
     Integer id;
     String name;
     String releaseType;
@@ -19,5 +19,4 @@ public class ReleaseDto implements Serializable {
     String producer;
     String coverImageUrl;
     String description;
-    Set<SongDto> songs;
 }

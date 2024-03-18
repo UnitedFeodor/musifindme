@@ -1,5 +1,6 @@
-package com.kachinsky.musifindmebackend.dto;
+package com.kachinsky.musifindmebackend.dto.artist;
 
+import com.kachinsky.musifindmebackend.dto.release.ReleaseDto;
 import lombok.Value;
 
 import java.io.Serializable;

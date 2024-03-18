@@ -1,5 +1,10 @@
-package com.kachinsky.musifindmebackend.dto;
+package com.kachinsky.musifindmebackend.dto.user;
 
+import com.kachinsky.musifindmebackend.dto.artist.FlatArtistDto;
+import com.kachinsky.musifindmebackend.dto.genre.GenreDto;
+import com.kachinsky.musifindmebackend.dto.instrument.InstrumentDto;
+import com.kachinsky.musifindmebackend.dto.release.FlatReleaseDto;
+import com.kachinsky.musifindmebackend.dto.song.FlatSongDto;
 import lombok.Value;
 
 import java.io.Serializable;

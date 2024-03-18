@@ -1,8 +1,8 @@
 package com.kachinsky.musifindmebackend.controller;
 
-import com.kachinsky.musifindmebackend.dto.CreateUserDto;
-import com.kachinsky.musifindmebackend.dto.FlatUserDto;
-import com.kachinsky.musifindmebackend.dto.UpdateUserDto;
+import com.kachinsky.musifindmebackend.dto.user.CreateUserDto;
+import com.kachinsky.musifindmebackend.dto.user.FlatUserDto;
+import com.kachinsky.musifindmebackend.dto.user.UpdateUserDto;
 import com.kachinsky.musifindmebackend.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

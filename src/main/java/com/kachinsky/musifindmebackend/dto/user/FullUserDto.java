@@ -1,5 +1,7 @@
-package com.kachinsky.musifindmebackend.dto;
+package com.kachinsky.musifindmebackend.dto.user;
 
+import com.kachinsky.musifindmebackend.dto.artist.ArtistDto;
+import com.kachinsky.musifindmebackend.dto.instrument.InstrumentDto;
 import com.kachinsky.musifindmebackend.entity.User;
 import lombok.Value;
 

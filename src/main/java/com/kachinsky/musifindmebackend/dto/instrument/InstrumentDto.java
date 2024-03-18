@@ -1,4 +1,4 @@
-package com.kachinsky.musifindmebackend.dto;
+package com.kachinsky.musifindmebackend.dto.instrument;
 
 import com.kachinsky.musifindmebackend.entity.Instrument;
 import lombok.Value;

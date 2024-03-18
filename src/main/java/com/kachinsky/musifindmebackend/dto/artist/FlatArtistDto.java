@@ -1,4 +1,4 @@
-package com.kachinsky.musifindmebackend.dto;
+package com.kachinsky.musifindmebackend.dto.artist;
 
 import lombok.Value;
 

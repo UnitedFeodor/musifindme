@@ -1,4 +1,4 @@
-package com.kachinsky.musifindmebackend.dto;
+package com.kachinsky.musifindmebackend.dto.genre;
 
 import com.kachinsky.musifindmebackend.entity.Genre;
 import lombok.Value;
