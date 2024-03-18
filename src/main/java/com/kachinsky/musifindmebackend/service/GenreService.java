@@ -4,6 +4,7 @@ import com.kachinsky.musifindmebackend.dto.genre.CreateUpdateGenreDto;
 import com.kachinsky.musifindmebackend.dto.genre.FlatGenreDto;
 import com.kachinsky.musifindmebackend.dto.genre.FullGenreDto;
 import com.kachinsky.musifindmebackend.entity.Genre;
+import com.kachinsky.musifindmebackend.exception.ResourceAlreadyExistsException;
 import com.kachinsky.musifindmebackend.exception.ResourceNotFoundException;
 import com.kachinsky.musifindmebackend.mapper.GenreDtoMapper;
 import com.kachinsky.musifindmebackend.repository.GenreRepository;
@@ -33,10 +34,17 @@ public class GenreService {
         return genreDtoMapper.toFullDto(genre);
     }
     @Transactional
-    public FullGenreDto createGenre(CreateUpdateGenreDto createUpdateGenreDto) {
-        Genre genre = genreDtoMapper.toEntity(createUpdateGenreDto);
-        Genre savedGenre = genreRepository.save(genre);
-        return genreDtoMapper.toFullDto(savedGenre);
+    public FullGenreDto createGenre(CreateUpdateGenreDto genreDto) {
+        String genreName = genreDto.getName();
+        if (genreRepository.existsByName(genreName)) {
+            throw new ResourceAlreadyExistsException("Genre with name " + genreName + " already exists");
+        }
+
+        Genre genreToCreate = genreDtoMapper.toEntity(genreDto);
+
+        Genre createdGenre = genreRepository.save(genreToCreate);
+
+        return genreDtoMapper.toFullDto(createdGenre);
     }
     @Transactional
     public FullGenreDto updateGenreById(int id, CreateUpdateGenreDto createUpdateGenreDto) {

@@ -1,6 +1,7 @@
 package com.kachinsky.musifindmebackend.controller;
 
 import com.kachinsky.musifindmebackend.dto.user.CreateUserDto;
+import com.kachinsky.musifindmebackend.dto.user.FlatUserDto;
 import com.kachinsky.musifindmebackend.dto.user.FullUserDto;
 import com.kachinsky.musifindmebackend.dto.user.UpdateUserDto;
 import com.kachinsky.musifindmebackend.service.UserService;
@@ -8,6 +9,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/users")
@@ -17,12 +20,16 @@ public class UserController {
 
     private final UserService userService;
 
-    //TODO add get all
+    @GetMapping
+    @ResponseStatus(HttpStatus.OK)
+    public List<FlatUserDto> getAllArtists() {
+        return userService.getAllUsers();
+    }
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public FullUserDto getFlatUserById(@PathVariable int id) {
         log.info("Requested user with id {}",id);
-        return userService.getFlatUserById(id);
+        return userService.getUserById(id);
     }
 
     // TODO validate nulls

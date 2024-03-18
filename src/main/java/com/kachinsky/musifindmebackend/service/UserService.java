@@ -1,17 +1,20 @@
 package com.kachinsky.musifindmebackend.service;
 
 import com.kachinsky.musifindmebackend.dto.user.CreateUserDto;
+import com.kachinsky.musifindmebackend.dto.user.FlatUserDto;
 import com.kachinsky.musifindmebackend.dto.user.FullUserDto;
 import com.kachinsky.musifindmebackend.dto.user.UpdateUserDto;
 import com.kachinsky.musifindmebackend.entity.User;
+import com.kachinsky.musifindmebackend.exception.ResourceAlreadyExistsException;
 import com.kachinsky.musifindmebackend.exception.ResourceNotFoundException;
-import com.kachinsky.musifindmebackend.exception.UserAlreadyExistsException;
 import com.kachinsky.musifindmebackend.mapper.UserDtoMapper;
 import com.kachinsky.musifindmebackend.repository.UserRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -22,13 +25,19 @@ public class UserService {
     private final UserRepository userRepository;
 
     @Transactional
-    public FullUserDto getFlatUserById(int id) {
+    public List<FlatUserDto> getAllUsers() {
+        List<User> users = userRepository.findAll();
+        return userDtoMapper.toDto(users);
+    }
+    
+    @Transactional
+    public FullUserDto getUserById(int id) {
         User user =
                 userRepository
                         .findFullUserInfoById(id)
                         .orElseThrow(() -> new ResourceNotFoundException("User with id " + id + " not found"));
 
-        return userDtoMapper.toFlatUserDto(user);
+        return userDtoMapper.toFullDto(user);
     }
 
     @Transactional
@@ -40,7 +49,7 @@ public class UserService {
         userDtoMapper.partialUpdate(updateUserDto,userToUpdate);
 
         userRepository.save(userToUpdate);
-        return userDtoMapper.toFlatUserDto(userToUpdate);
+        return userDtoMapper.toFullDto(userToUpdate);
     }
 
     // TODO fix bug with null joins
@@ -48,14 +57,14 @@ public class UserService {
     public FullUserDto createUser(CreateUserDto userDto) {
         String userEmail = userDto.getEmail();
         if (userRepository.existsByEmail(userEmail)) {
-            throw new UserAlreadyExistsException("User with email " + userEmail + " already exists");
+            throw new ResourceAlreadyExistsException("User with email " + userEmail + " already exists");
         }
 
         User userToCreate = userDtoMapper.toEntity(userDto);
 
         User createdUser = userRepository.save(userToCreate);
 
-        return userDtoMapper.toFlatUserDto(createdUser);
+        return userDtoMapper.toFullDto(createdUser);
 
 //        User user =
 //                userRepository

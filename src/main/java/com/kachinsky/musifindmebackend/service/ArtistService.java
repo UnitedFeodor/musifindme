@@ -5,6 +5,7 @@ import com.kachinsky.musifindmebackend.dto.artist.FlatArtistDto;
 import com.kachinsky.musifindmebackend.dto.artist.FullArtistDto;
 import com.kachinsky.musifindmebackend.dto.artist.UpdateArtistDto;
 import com.kachinsky.musifindmebackend.entity.Artist;
+import com.kachinsky.musifindmebackend.exception.ResourceAlreadyExistsException;
 import com.kachinsky.musifindmebackend.exception.ResourceNotFoundException;
 import com.kachinsky.musifindmebackend.mapper.ArtistDtoMapper;
 import com.kachinsky.musifindmebackend.repository.ArtistRepository;
@@ -30,10 +31,17 @@ public class ArtistService {
     }
 
     @Transactional
-    public FullArtistDto createArtistWithExistingGenres(CreateArtistWithExistingGenresDto createArtistDto) {
-        Artist artist = artistDtoMapper.toEntity(createArtistDto);
-        Artist savedArtist = artistRepository.save(artist);
-        return artistDtoMapper.toFullDto(savedArtist);
+    public FullArtistDto createArtistWithExistingGenres(CreateArtistWithExistingGenresDto artistDto) {
+        String artistName = artistDto.getName();
+        if (artistRepository.existsByName(artistName)) {
+            throw new ResourceAlreadyExistsException("Artist with name " + artistName + " already exists");
+        }
+
+        Artist artistToCreate = artistDtoMapper.toEntity(artistDto);
+
+        Artist createdArtist = artistRepository.save(artistToCreate);
+
+        return artistDtoMapper.toFullDto(createdArtist);
     }
 
     @Transactional

@@ -14,4 +14,5 @@ public class CreateSongWithExistingGenresDto implements Serializable {
     @NotBlank(message = "Name must be not blank")
     String name;
     Set<Integer> genreIds;
+    Set<Integer> artistIds;
 }

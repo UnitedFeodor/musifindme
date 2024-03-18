@@ -5,6 +5,7 @@ import com.kachinsky.musifindmebackend.dto.instrument.CreateUpdateInstrumentDto;
 import com.kachinsky.musifindmebackend.dto.instrument.FlatInstrumentDto;
 import com.kachinsky.musifindmebackend.dto.instrument.FullInstrumentDto;
 import com.kachinsky.musifindmebackend.entity.Instrument;
+import com.kachinsky.musifindmebackend.exception.ResourceAlreadyExistsException;
 import com.kachinsky.musifindmebackend.exception.ResourceNotFoundException;
 import com.kachinsky.musifindmebackend.mapper.InstrumentDtoMapper;
 import com.kachinsky.musifindmebackend.repository.InstrumentRepository;
@@ -33,10 +34,17 @@ public class InstrumentService {
         return instrumentDtoMapper.toFullDto(instrument);
     }
     @Transactional
-    public FullInstrumentDto createInstrument(CreateUpdateInstrumentDto createUpdateInstrumentDto) {
-        Instrument instrument = instrumentDtoMapper.toEntity(createUpdateInstrumentDto);
-        Instrument savedInstrument = instrumentRepository.save(instrument);
-        return instrumentDtoMapper.toFullDto(savedInstrument);
+    public FullInstrumentDto createInstrument(CreateUpdateInstrumentDto instrumentDto) {
+        String instrumentName = instrumentDto.getName();
+        if (instrumentRepository.existsByName(instrumentName)) {
+            throw new ResourceAlreadyExistsException("Instrument with name " + instrumentName + " already exists");
+        }
+
+        Instrument instrumentToCreate = instrumentDtoMapper.toEntity(instrumentDto);
+
+        Instrument createdInstrument = instrumentRepository.save(instrumentToCreate);
+
+        return instrumentDtoMapper.toFullDto(createdInstrument);
     }
     @Transactional
     public FullInstrumentDto updateInstrumentById(int id, CreateUpdateInstrumentDto createUpdateInstrumentDto) {

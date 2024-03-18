@@ -1,5 +1,6 @@
 package com.kachinsky.musifindmebackend.mapper;
 
+import com.kachinsky.musifindmebackend.dto.song.CreateSongWithExistingGenresDto;
 import com.kachinsky.musifindmebackend.dto.song.FlatSongDto;
 import com.kachinsky.musifindmebackend.dto.song.FullSongDto;
 import com.kachinsky.musifindmebackend.dto.song.UpdateSongDto;
@@ -22,8 +23,9 @@ public interface SongDtoMapper {
 //    Song partialUpdate(SongDto songDto, @MappingTarget Song song);
 
     Song toEntity(FlatSongDto flatSongDto);
+    Song toEntity(CreateSongWithExistingGenresDto songDto);
 
-    FlatSongDto toDto1(Song song);
+    FlatSongDto toFlatDto(Song song);
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     Song partialUpdate(FlatSongDto flatSongDto, @MappingTarget Song song);
@@ -52,7 +54,7 @@ public interface SongDtoMapper {
 
     Song toEntity(FullSongDto fullSongDto);
 
-    FullSongDto toDto2(Song song);
+    FullSongDto toFullDto(Song song);
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     Song partialUpdate(FullSongDto fullSongDto, @MappingTarget Song song);
