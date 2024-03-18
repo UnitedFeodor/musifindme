@@ -38,7 +38,7 @@ public class Song {
     @JoinTable(name = "songs_releases",
             joinColumns = @JoinColumn(name = "song_id"),
             inverseJoinColumns = @JoinColumn(name = "release_id"))
-    @NotEmpty(message = "Releases must be not blank")
+//    @NotEmpty(message = "Releases must be not blank")
     private Set<Release> releases = new LinkedHashSet<>();
 
     @ManyToMany(mappedBy = "songs", fetch = FetchType.LAZY)

@@ -4,7 +4,6 @@ import com.kachinsky.musifindmebackend.entity.Release;
 import lombok.Value;
 
 import java.io.Serializable;
-import java.util.Set;
 
 /**
  * DTO for {@link Release}
@@ -15,8 +14,5 @@ public class FlatReleaseDto implements Serializable {
     String name;
     String releaseType;
     Integer releaseYear;
-    String recordLabel;
-    String producer;
     String coverImageUrl;
-    String description;
 }
