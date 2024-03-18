@@ -22,10 +22,7 @@ public class Instrument {
     @NotBlank(message = "Name must be not blank")
     private String name;
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "users_instruments",
-            joinColumns = @JoinColumn(name = "instrument_id"),
-            inverseJoinColumns = @JoinColumn(name = "user_id"))
+    @ManyToMany(mappedBy = "instruments", fetch = FetchType.LAZY)
     private Set<User> users = new LinkedHashSet<>();
 
 }

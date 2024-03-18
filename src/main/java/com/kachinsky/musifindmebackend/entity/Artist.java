@@ -44,10 +44,10 @@ public class Artist {
 //    @NotEmpty(message = "Songs must not be empty")
     private Set<Song> songs = new LinkedHashSet<>();
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "users_artists",
-            joinColumns = @JoinColumn(name = "artist_id"),
-            inverseJoinColumns = @JoinColumn(name = "user_id"))
+    @ManyToMany(mappedBy = "artists", fetch = FetchType.LAZY)
+//    @JoinTable(name = "users_artists",
+//            joinColumns = @JoinColumn(name = "artist_id"),
+//            inverseJoinColumns = @JoinColumn(name = "user_id"))
     private Set<User> users = new LinkedHashSet<>();
 
 }

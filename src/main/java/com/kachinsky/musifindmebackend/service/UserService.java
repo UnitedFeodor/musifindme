@@ -43,7 +43,7 @@ public class UserService {
         return userDtoMapper.toFlatUserDto(userToUpdate);
     }
 
-
+    // TODO fix bug with null joins
     @Transactional
     public FlatUserDto createUser(CreateUserDto userDto) {
         String userEmail = userDto.getEmail();
@@ -55,18 +55,31 @@ public class UserService {
 
         User createdUser = userRepository.save(userToCreate);
 
-        return userDtoMapper.toFlatUserDto(createdUser);
+//        return userDtoMapper.toFlatUserDto(createdUser);
+
+        User user =
+                userRepository
+                        .findFullUserInfoById(createdUser.getId())
+                        .orElseThrow(() -> new ResourceNotFoundException("User with id " + createdUser.getId() + " not found"));
+
+//        user = userRepository
+//                .findFullUserInfoById(createdUser.getId())
+//                .orElseThrow(() -> new ResourceNotFoundException("User with id " + createdUser.getId() + " not found"));
+        return userDtoMapper.toFlatUserDto(user);
+//        return getFlatUserById(createdUser.getId());
 
     }
-//    @Transactional(propagation = Propagation.REQUIRED)
-//    public void deleteArticleById(Long id) {
-//        if (id == null || !articleRepository.existsById(id)) {
-//            throw new ResourceNotFoundException("Article with id " + id + " not found");
-//        }
-//
-//        // The associated comments are delete with a cascade operation
-//        articleRepository.deleteById(id);
-//        log.info("Article with id {} deleted", id);
-//        // todo check that it's actually deleted with cascade
-//    }
+
+    @Transactional
+    public void deleteUserById(int id) {
+        if (!userRepository.existsById(id)) {
+            throw new ResourceNotFoundException("User with id " + id + " not found");
+        }
+
+        // The associated instruments
+        userRepository.deleteById(id);
+        log.info("User with id {} deleted", id);
+
+    }
+
 }

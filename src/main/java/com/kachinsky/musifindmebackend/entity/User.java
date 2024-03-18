@@ -57,7 +57,10 @@ public class User {
     @NotBlank(message = "Password must not be empty")
     private String password;
 
-    @ManyToMany(mappedBy = "users")
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE})
+    @JoinTable(name = "users_artists",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "artist_id"))
     @NotEmpty(message = "Artists must not be empty")
     private Set<Artist> artists = new LinkedHashSet<>();
 
@@ -68,7 +71,10 @@ public class User {
     @NotEmpty(message = "Genres must not be empty")
     private Set<Genre> genres = new LinkedHashSet<>();
 
-    @ManyToMany(mappedBy = "users", fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "users_instruments",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "instrument_id"))
     @NotEmpty(message = "Instruments must not be empty")
     private Set<Instrument> instruments = new LinkedHashSet<>();
 
