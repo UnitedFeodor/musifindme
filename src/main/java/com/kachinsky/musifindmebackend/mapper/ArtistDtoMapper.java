@@ -17,12 +17,6 @@ import java.util.stream.Collectors;
 @Mapper(unmappedTargetPolicy = ReportingPolicy.WARN, componentModel = MappingConstants.ComponentModel.SPRING, uses = {GenreDtoMapper.class, ReleaseDtoMapper.class, SongDtoMapper.class})
 public interface ArtistDtoMapper {
 
-//    Artist toEntity(ArtistDto artistDto);
-//    ArtistDto toArtistDto(Artist artist);
-
-//    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
-//    Artist partialUpdate(ArtistDto artistDto, @MappingTarget Artist artist);
-
     Artist toEntity(FlatArtistDto flatArtistDto);
 
     FlatArtistDto toFlatDto(Artist artist);
@@ -46,7 +40,7 @@ public interface ArtistDtoMapper {
     @Mapping(target = "genreIds", expression = "java(genresToGenreIds(artist.getGenres()))")
     @Mapping(target = "releaseIds", expression = "java(releasesToReleaseIds(artist.getReleases()))")
     @Mapping(target = "songIds", expression = "java(songsToSongIds(artist.getSongs()))")
-    UpdateArtistDto toDto1(Artist artist);
+    UpdateArtistDto toUpadteDto(Artist artist);
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     Artist partialUpdate(UpdateArtistDto updateArtistDto, @MappingTarget Artist artist);
@@ -69,6 +63,5 @@ public interface ArtistDtoMapper {
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     Artist partialUpdate(FullArtistDto fullArtistDto, @MappingTarget Artist artist);
 
-//    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
-//    Artist partialUpdate(FlatArtistDto flatArtistDto, @MappingTarget Artist artist);
+
 }

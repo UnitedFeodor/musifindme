@@ -10,7 +10,7 @@ import org.mapstruct.*;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-@Mapper(unmappedTargetPolicy = ReportingPolicy.WARN, componentModel = MappingConstants.ComponentModel.SPRING, uses = {ArtistDtoMapper.class, GenreDtoMapper.class, SongDtoMapper.class})
+@Mapper(unmappedTargetPolicy = ReportingPolicy.WARN, componentModel = MappingConstants.ComponentModel.SPRING, uses = {GenreDtoMapper.class, SongDtoMapper.class})
 public interface ReleaseDtoMapper {
 //    Release toEntity(FlatReleaseWithSongsDto releaseDto);
 

@@ -8,7 +8,7 @@ import org.mapstruct.*;
 
 import java.util.List;
 
-@Mapper(unmappedTargetPolicy = ReportingPolicy.WARN, componentModel = MappingConstants.ComponentModel.SPRING, uses = {ArtistDtoMapper.class, ReleaseDtoMapper.class, SongDtoMapper.class})
+@Mapper(unmappedTargetPolicy = ReportingPolicy.WARN, componentModel = MappingConstants.ComponentModel.SPRING)
 public interface GenreDtoMapper {
     Genre toEntity(FlatGenreDto flatGenreDto);
 
@@ -25,11 +25,9 @@ public interface GenreDtoMapper {
 
     Genre toEntity(FullGenreDto fullGenreDto);
 
-    FullGenreDto toDto1(Genre genre);
-
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     Genre partialUpdate(FullGenreDto fullGenreDto, @MappingTarget Genre genre);
 
-    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
-    Genre partialUpdate(FlatGenreDto flatGenreDto, @MappingTarget Genre genre);
+//    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
+//    Genre partialUpdate(FlatGenreDto flatGenreDto, @MappingTarget Genre genre);
 }

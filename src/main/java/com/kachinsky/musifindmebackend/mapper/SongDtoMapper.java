@@ -13,7 +13,7 @@ import org.mapstruct.*;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-@Mapper(unmappedTargetPolicy = ReportingPolicy.WARN, componentModel = MappingConstants.ComponentModel.SPRING, uses = {ArtistDtoMapper.class, GenreDtoMapper.class, ReleaseDtoMapper.class})
+@Mapper(unmappedTargetPolicy = ReportingPolicy.WARN, componentModel = MappingConstants.ComponentModel.SPRING, uses = {GenreDtoMapper.class})
 public interface SongDtoMapper {
 //    Song toEntity(SongDto songDto);
 
