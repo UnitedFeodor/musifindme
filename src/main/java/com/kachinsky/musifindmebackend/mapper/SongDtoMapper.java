@@ -1,9 +1,6 @@
 package com.kachinsky.musifindmebackend.mapper;
 
-import com.kachinsky.musifindmebackend.dto.song.CreateSongWithExistingGenresDto;
-import com.kachinsky.musifindmebackend.dto.song.FlatSongDto;
-import com.kachinsky.musifindmebackend.dto.song.FullSongDto;
-import com.kachinsky.musifindmebackend.dto.song.UpdateSongDto;
+import com.kachinsky.musifindmebackend.dto.song.*;
 import com.kachinsky.musifindmebackend.entity.Artist;
 import com.kachinsky.musifindmebackend.entity.Genre;
 import com.kachinsky.musifindmebackend.entity.Release;
@@ -23,6 +20,7 @@ public interface SongDtoMapper {
 //    Song partialUpdate(SongDto songDto, @MappingTarget Song song);
 
     Song toEntity(FlatSongDto flatSongDto);
+
     Song toEntity(CreateSongWithExistingGenresDto songDto);
 
     FlatSongDto toFlatDto(Song song);
@@ -58,6 +56,13 @@ public interface SongDtoMapper {
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     Song partialUpdate(FullSongDto fullSongDto, @MappingTarget Song song);
+
+    Song toEntity(FlatSongWithArtistsDto flatSongWithArtistsDto);
+
+    FlatSongWithArtistsDto toFlatWithArtistsDto(Song song);
+
+    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
+    Song partialUpdate(FlatSongWithArtistsDto flatSongWithArtistsDto, @MappingTarget Song song);
 
 //    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
 //    Song partialUpdate(FlatSongDto flatSongDto, @MappingTarget Song song);

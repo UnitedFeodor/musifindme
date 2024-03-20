@@ -1,9 +1,6 @@
 package com.kachinsky.musifindmebackend.controller;
 
-import com.kachinsky.musifindmebackend.dto.song.CreateSongWithExistingGenresDto;
-import com.kachinsky.musifindmebackend.dto.song.FlatSongDto;
-import com.kachinsky.musifindmebackend.dto.song.FullSongDto;
-import com.kachinsky.musifindmebackend.dto.song.UpdateSongDto;
+import com.kachinsky.musifindmebackend.dto.song.*;
 import com.kachinsky.musifindmebackend.service.SongService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -22,7 +19,7 @@ public class SongController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public List<FlatSongDto> getAllSongs() {
+    public List<FlatSongWithArtistsDto> getAllSongs() {
         return songService.getAllSongs();
     }
 

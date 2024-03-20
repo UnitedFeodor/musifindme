@@ -1,9 +1,6 @@
 package com.kachinsky.musifindmebackend.service;
 
-import com.kachinsky.musifindmebackend.dto.song.CreateSongWithExistingGenresDto;
-import com.kachinsky.musifindmebackend.dto.song.FlatSongDto;
-import com.kachinsky.musifindmebackend.dto.song.FullSongDto;
-import com.kachinsky.musifindmebackend.dto.song.UpdateSongDto;
+import com.kachinsky.musifindmebackend.dto.song.*;
 import com.kachinsky.musifindmebackend.entity.Song;
 import com.kachinsky.musifindmebackend.exception.ResourceAlreadyExistsException;
 import com.kachinsky.musifindmebackend.exception.ResourceNotFoundException;
@@ -27,9 +24,9 @@ public class SongService {
     private final SongRepository songRepository;
 
     @Transactional
-    public List<FlatSongDto> getAllSongs() {
-        List<FlatSongDto> flatSongDtos = songRepository.findAll().stream()
-                .map(songDtoMapper::toFlatDto)
+    public List<FlatSongWithArtistsDto> getAllSongs() {
+        List<FlatSongWithArtistsDto> flatSongDtos = songRepository.findAll().stream()
+                .map(songDtoMapper::toFlatWithArtistsDto)
                 .collect(Collectors.toList());
         return flatSongDtos;
     }
