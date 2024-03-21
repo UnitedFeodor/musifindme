@@ -87,4 +87,14 @@ public class UserService {
 
     }
 
+    @Transactional
+    public FullUserDto getUserByEmail(String email) {
+        User user =
+                userRepository
+                        .findFullUserInfoByEmail(email)
+                        .orElseThrow(() -> new ResourceNotFoundException("User with email " + email + " not found"));
+
+        return userDtoMapper.toFullDto(user);
+
+    }
 }

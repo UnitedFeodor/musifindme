@@ -12,4 +12,7 @@ public interface UserRepository extends JpaRepository<User, Integer> {
     Optional<User> findFullUserInfoById(int id);
 
     boolean existsByEmail(String email);
+
+    @EntityGraph(attributePaths = {"artists", "genres", "instruments", "releases", "songs"})
+    Optional<User> findFullUserInfoByEmail(String email);
 }

@@ -27,9 +27,16 @@ public class UserController {
     }
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public FullUserDto getFlatUserById(@PathVariable int id) {
+    public FullUserDto getFullUserById(@PathVariable int id) {
         log.info("Requested user with id {}",id);
         return userService.getUserById(id);
+    }
+
+    @GetMapping("/search")
+    @ResponseStatus(HttpStatus.OK)
+    public FullUserDto getFullUserByEmail(@RequestParam String email) {
+        log.info("Requested user with email {}", email);
+        return userService.getUserByEmail(email);
     }
 
     // TODO validate nulls
