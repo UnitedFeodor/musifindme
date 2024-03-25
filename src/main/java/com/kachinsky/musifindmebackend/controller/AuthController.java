@@ -1,5 +1,6 @@
 package com.kachinsky.musifindmebackend.controller;
 
+import com.kachinsky.musifindmebackend.config.WebSecurityConfig;
 import com.kachinsky.musifindmebackend.dto.auth.LoginRequestDto;
 import com.kachinsky.musifindmebackend.dto.user.CreateUserDto;
 import com.kachinsky.musifindmebackend.dto.user.FullUserDto;
@@ -8,6 +9,9 @@ import com.kachinsky.musifindmebackend.security.service.UserDetailsImpl;
 import com.kachinsky.musifindmebackend.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
+import org.springframework.context.annotation.Conditional;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -21,6 +25,7 @@ import org.springframework.http.ResponseCookie;
 @RequestMapping("/api/auth")
 @RequiredArgsConstructor
 @Slf4j
+@ConditionalOnBean(WebSecurityConfig.class)
 public class AuthController {
     private final UserService userService;
 

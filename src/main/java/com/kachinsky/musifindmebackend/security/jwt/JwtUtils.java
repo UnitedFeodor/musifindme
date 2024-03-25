@@ -3,12 +3,14 @@ package com.kachinsky.musifindmebackend.security.jwt;
 import java.security.Key;
 import java.util.Date;
 
+import com.kachinsky.musifindmebackend.config.WebSecurityConfig;
 import com.kachinsky.musifindmebackend.security.service.UserDetailsImpl;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.http.ResponseCookie;
 import org.springframework.stereotype.Component;
 import org.springframework.web.util.WebUtils;
@@ -17,6 +19,7 @@ import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 @Component
 @Slf4j
+@ConditionalOnBean(WebSecurityConfig.class)
 public class JwtUtils {
 
     @Value("${kachinsky.app.jwtSecret}")

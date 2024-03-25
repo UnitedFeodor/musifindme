@@ -50,6 +50,7 @@ public class UserController {
 
     @PatchMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
+    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
     public FullUserDto updateUserById(@PathVariable int id, @RequestBody UpdateUserDto userDto) {
         log.info("Requested update of user with id {}",id);
         return userService.updateUserById(id, userDto);
