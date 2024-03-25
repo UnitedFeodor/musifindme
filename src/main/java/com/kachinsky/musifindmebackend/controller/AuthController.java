@@ -36,10 +36,10 @@ public class AuthController {
 
     private final JwtUtils jwtUtils;
 
-//    @GetMapping("/hello")
-//    public ResponseEntity<String> hello() {
-//        return ResponseEntity.ok("hello");
-//    }
+    @GetMapping("/hello")
+    public ResponseEntity<String> hello() {
+        return ResponseEntity.ok("hello");
+    }
 
     @PostMapping("/signin")
     public ResponseEntity<?> authenticateUser(@RequestBody LoginRequestDto loginRequest) {
@@ -53,9 +53,9 @@ public class AuthController {
 
         ResponseCookie jwtCookie = jwtUtils.generateJwtCookie(userDetails);
 
-        List<String> roles = userDetails.getAuthorities().stream()
-                .map(GrantedAuthority::getAuthority)
-                .toList();
+//        List<String> roles = userDetails.getAuthorities().stream()
+//                .map(GrantedAuthority::getAuthority)
+//                .toList();
 
         FullUserDto userById = userService.getUserById(Math.toIntExact(userDetails.getId()));
 

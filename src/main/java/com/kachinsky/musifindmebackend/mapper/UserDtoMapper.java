@@ -1,9 +1,6 @@
 package com.kachinsky.musifindmebackend.mapper;
 
-import com.kachinsky.musifindmebackend.dto.user.CreateUserDto;
-import com.kachinsky.musifindmebackend.dto.user.FlatUserDto;
-import com.kachinsky.musifindmebackend.dto.user.FullUserDto;
-import com.kachinsky.musifindmebackend.dto.user.UpdateUserDto;
+import com.kachinsky.musifindmebackend.dto.user.*;
 import com.kachinsky.musifindmebackend.entity.*;
 import org.mapstruct.*;
 
@@ -13,7 +10,8 @@ import java.util.stream.Collectors;
 
 @Mapper(
         unmappedTargetPolicy = ReportingPolicy.WARN,
-        componentModel = MappingConstants.ComponentModel.SPRING
+        componentModel = MappingConstants.ComponentModel.SPRING,
+        uses = {RoleDtoMapper.class}
 //        uses = {ArtistDtoMapper.class, InstrumentDtoMapper.class, GenreDtoMapper.class, ReleaseDtoMapper.class, SongDtoMapper.class}
 )
 public interface UserDtoMapper {
