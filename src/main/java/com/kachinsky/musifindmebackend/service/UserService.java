@@ -12,6 +12,8 @@ import com.kachinsky.musifindmebackend.repository.UserRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,6 +25,7 @@ public class UserService {
 
     private final UserDtoMapper userDtoMapper;
     private final UserRepository userRepository;
+    private final PasswordEncoder encoder;
 
     @Transactional
     public List<FlatUserDto> getAllUsers() {
@@ -61,6 +64,7 @@ public class UserService {
         }
 
         User userToCreate = userDtoMapper.toEntity(userDto);
+        userToCreate.setPassword(encoder.encode(userDto.getPassword()));
 
         User createdUser = userRepository.save(userToCreate);
 

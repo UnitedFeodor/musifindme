@@ -13,6 +13,9 @@ import java.io.Serializable;
 @Value
 public class FlatUserDto implements Serializable {
     Integer id;
+
+    String email;
+
     @NotBlank(message = "Name must not be empty")
     String name;
     @Min(message = "User age must be at least 12", value = 12)

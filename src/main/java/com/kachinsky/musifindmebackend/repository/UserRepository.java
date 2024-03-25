@@ -8,11 +8,11 @@ import java.util.Optional;
 
 public interface UserRepository extends JpaRepository<User, Integer> {
 
-    @EntityGraph(attributePaths = {"artists", "genres", "instruments", "releases", "songs"})
+    @EntityGraph(attributePaths = {"artists", "genres", "instruments", "releases", "songs", "roles"})
     Optional<User> findFullUserInfoById(int id);
 
     boolean existsByEmail(String email);
 
-    @EntityGraph(attributePaths = {"artists", "genres", "instruments", "releases", "songs"})
+    @EntityGraph(attributePaths = {"artists", "genres", "instruments", "releases", "songs", "roles"})
     Optional<User> findFullUserInfoByEmail(String email);
 }

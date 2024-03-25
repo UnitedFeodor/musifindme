@@ -29,4 +29,7 @@ public class FullUserDto implements Serializable {
     Set<FlatInstrumentDto> instruments;
     Set<FlatReleaseDto> releases;
     Set<FlatSongDto> songs;
+
+    Set<RoleDto> roles;
+
 }
