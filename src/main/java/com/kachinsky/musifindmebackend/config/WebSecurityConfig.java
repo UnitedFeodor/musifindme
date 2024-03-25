@@ -3,7 +3,7 @@ package com.kachinsky.musifindmebackend.config;
 import com.kachinsky.musifindmebackend.security.jwt.AuthEntryPointJwt;
 import com.kachinsky.musifindmebackend.security.jwt.AuthTokenFilter;
 import com.kachinsky.musifindmebackend.security.jwt.JwtUtils;
-import com.kachinsky.musifindmebackend.service.security.UserDetailsServiceImpl;
+import com.kachinsky.musifindmebackend.security.service.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

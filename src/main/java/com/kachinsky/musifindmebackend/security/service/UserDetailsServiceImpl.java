@@ -1,4 +1,4 @@
-package com.kachinsky.musifindmebackend.service.security;
+package com.kachinsky.musifindmebackend.security.service;
 
 import com.kachinsky.musifindmebackend.entity.User;
 import com.kachinsky.musifindmebackend.repository.UserRepository;

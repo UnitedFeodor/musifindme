@@ -3,7 +3,7 @@ package com.kachinsky.musifindmebackend.security.jwt;
 import java.security.Key;
 import java.util.Date;
 
-import com.kachinsky.musifindmebackend.service.security.UserDetailsImpl;
+import com.kachinsky.musifindmebackend.security.service.UserDetailsImpl;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 

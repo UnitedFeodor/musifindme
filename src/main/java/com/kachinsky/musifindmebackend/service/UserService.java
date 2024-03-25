@@ -4,10 +4,12 @@ import com.kachinsky.musifindmebackend.dto.user.CreateUserDto;
 import com.kachinsky.musifindmebackend.dto.user.FlatUserDto;
 import com.kachinsky.musifindmebackend.dto.user.FullUserDto;
 import com.kachinsky.musifindmebackend.dto.user.UpdateUserDto;
+import com.kachinsky.musifindmebackend.entity.RoleName;
 import com.kachinsky.musifindmebackend.entity.User;
 import com.kachinsky.musifindmebackend.exception.ResourceAlreadyExistsException;
 import com.kachinsky.musifindmebackend.exception.ResourceNotFoundException;
 import com.kachinsky.musifindmebackend.mapper.UserDtoMapper;
+import com.kachinsky.musifindmebackend.repository.RoleRepository;
 import com.kachinsky.musifindmebackend.repository.UserRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -25,6 +27,9 @@ public class UserService {
 
     private final UserDtoMapper userDtoMapper;
     private final UserRepository userRepository;
+
+    private final RoleRepository roleRepository;
+
     private final PasswordEncoder encoder;
 
     @Transactional
@@ -66,16 +71,12 @@ public class UserService {
         User userToCreate = userDtoMapper.toEntity(userDto);
         userToCreate.setPassword(encoder.encode(userDto.getPassword()));
 
+        userToCreate.getRoles().add(roleRepository.findByName(RoleName.ROLE_USER));
+
         User createdUser = userRepository.save(userToCreate);
 
         return userDtoMapper.toFullDto(createdUser);
 
-//        User user =
-//                userRepository
-//                        .findFullUserInfoById(createdUser.getId())
-//                        .orElseThrow(() -> new ResourceNotFoundException("User with id " + createdUser.getId() + " not found"));
-
-//        return userDtoMapper.toFlatUserDto(user);
 
     }
 

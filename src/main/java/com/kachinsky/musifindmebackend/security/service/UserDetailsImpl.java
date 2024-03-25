@@ -1,7 +1,6 @@
-package com.kachinsky.musifindmebackend.service.security;
+package com.kachinsky.musifindmebackend.security.service;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.kachinsky.musifindmebackend.entity.RoleName;
 import com.kachinsky.musifindmebackend.entity.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

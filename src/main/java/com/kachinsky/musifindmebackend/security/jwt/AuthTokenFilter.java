@@ -1,6 +1,6 @@
 package com.kachinsky.musifindmebackend.security.jwt;
 
-import com.kachinsky.musifindmebackend.service.security.UserDetailsServiceImpl;
+import com.kachinsky.musifindmebackend.security.service.UserDetailsServiceImpl;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
