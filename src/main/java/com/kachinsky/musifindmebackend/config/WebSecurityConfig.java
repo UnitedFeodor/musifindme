@@ -8,9 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
-import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -23,8 +23,6 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-
-import java.util.Arrays;
 
 @Profile("dev-security")
 @Configuration
@@ -67,10 +65,12 @@ public class WebSecurityConfig { // extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    CorsConfigurationSource corsConfigurationSource() {
+    public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList("http://localhost:4200"));
-        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE","PATCH"));
+        configuration.addAllowedOrigin("*"); // Allow requests from any origin
+        configuration.addAllowedMethod("*"); // Allow all HTTP methods
+        configuration.addAllowedHeader("*"); // Allow all headers
+
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
         return source;
@@ -78,7 +78,6 @@ public class WebSecurityConfig { // extends WebSecurityConfigurerAdapter {
     @Bean
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-//                .cors(Customizer.withDefaults())
                 .cors(cors -> {
                     cors.configurationSource(corsConfigurationSource());
                 })
@@ -88,15 +87,14 @@ public class WebSecurityConfig { // extends WebSecurityConfigurerAdapter {
                         auth.requestMatchers("/api/auth/**").permitAll()
                                 .requestMatchers("/api/test/**").permitAll()
                                 .requestMatchers("/v3/api-docs/**", "/swagger-ui/**").permitAll()
-                                .requestMatchers(
-                                        "/api/artists/**",
+                                .requestMatchers(HttpMethod.DELETE, "/api/artists/**",
                                         "/api/genres/**",
                                         "/api/instruments/**",
                                         "/api/releases/**",
                                         "/api/songs/**",
-                                        "/api/users/**"
-                                    ).permitAll()
-//                                .anyRequest().permitAll()
+                                        "/api/users/**")
+                                .hasAnyRole()
+                                .anyRequest().permitAll()
                 )
                 .csrf(AbstractHttpConfigurer::disable);
 
